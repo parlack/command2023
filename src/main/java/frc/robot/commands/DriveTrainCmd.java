@@ -29,15 +29,13 @@ public class DriveTrainCmd extends CommandBase {
   public void execute() {
 
     driveSubsystem.CHASIS(funcionVelocidad.get(), funciongiro.get());
-
+    
   }
 
   @Override
   public void end(boolean interrupted) {
 
-    driveSubsystem.resetEncoders();
-
-
+    
   }
 
   @Override
