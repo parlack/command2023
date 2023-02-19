@@ -25,11 +25,8 @@ public Joystick XboxController_main= new Joystick(0);
   }
 
   private void Controles1persona() {
-
     driveSubsystem.setDefaultCommand(new DriveTrainCmd(driveSubsystem, () -> XboxController_main.getRawAxis(3) -
     XboxController_main.getRawAxis(2), () -> XboxController_main.getRawAxis(0)));
-    
-
     
   }
 
