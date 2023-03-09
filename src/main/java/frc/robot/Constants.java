@@ -13,9 +13,9 @@ public class Constants {
         public static int PuertMotDer2 = 2;
         public static int PuertMotDer3 = 3;
 
-        public static int PuertMotIzq1yEncoder = 4;
+        public static int PuertMotIzq1yEncoder = 6;
         public static int PuertMotIzq2 = 5;
-        public static int PuertMotIzq3 = 6;
+        public static int PuertMotIzq3 = 4;
 
 
 

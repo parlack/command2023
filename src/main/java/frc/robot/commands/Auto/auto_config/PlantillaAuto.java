@@ -16,9 +16,7 @@ public class PlantillaAuto extends SequentialCommandGroup {
   private static final Trajectory Trajectory_test = PathPlanner.loadPath("testpath", Constants.AutoConstants.kMaxSpeedMetersPerSecond , Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared);
   
   public PlantillaAuto() {
-
     
-
     addCommands(
 
 new ParallelDeadlineGroup(new DrivetrainRamseteCommand(RobotContainer.driveSubsystem, Trajectory_test) .robotRelative()) );

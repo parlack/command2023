@@ -14,6 +14,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -29,7 +30,10 @@ public class DriveSubsystem extends SubsystemBase {
   WPI_TalonSRX MCD5 = new WPI_TalonSRX(PUERTOSCAN.PuertMotDer2);
   WPI_TalonSRX MCD6 = new WPI_TalonSRX(PUERTOSCAN.PuertMotDer3);
 
-  DifferentialDrive chasis = new DifferentialDrive(MCI1ENC, MCD4ENC);
+MotorControllerGroup motsizq =new MotorControllerGroup(MCI1ENC,MCI2,MCI3);
+MotorControllerGroup motsder=new MotorControllerGroup(MCD4ENC,MCD5,MCD6);
+
+  DifferentialDrive chasis = new DifferentialDrive(motsizq, motsder);
 
   // LIMELIGHT //////
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -59,18 +63,16 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public DriveSubsystem() {
+    resetTalons();
     resetEncoders();
     m_odometry = new DifferentialDriveOdometry(getRotation2d(),
         getLeftEncoderdistance(), getRightEncoderdistance());
 
-    MCI1ENC.setInverted(true);
-    MCI2.follow(MCI1ENC);
-    MCI3.follow(MCI1ENC);
+    motsizq.setInverted(false);
+    motsder.setInverted(true);
+   // configPIDDrivTr();
 
-    MCD4ENC.setInverted(false);
-    MCD5.follow(MCD4ENC);
-    MCD6.follow(MCD4ENC);
-    configPIDDrivTr();
+
   }
 
   public void configPIDDrivTr() {
@@ -141,8 +143,19 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void CHASIS(double velocidad, double giro) {
 
-    chasis.arcadeDrive(velocidad, giro);
+    chasis.arcadeDrive(velocidad, -giro);
 
+    double calculo_encizq;
+    double calculo_encder;
+
+    calculo_encizq=(-MCI1ENC.getSelectedSensorPosition()/4096/2);
+    calculo_encder=(MCD4ENC.getSelectedSensorPosition()/4096/2);
+
+    
+    SmartDashboard.putNumber("encoderizquierdo", calculo_encizq);
+    SmartDashboard.putNumber("encoderderecho", calculo_encder);
+
+    SmartDashboard.putNumber("avgDist", (calculo_encder + calculo_encizq)/2);
   }
 
   public Pose2d getPose() {
@@ -161,6 +174,20 @@ public class DriveSubsystem extends SubsystemBase {
 
   }
 
+
+
+  public void resetTalons(){
+
+    MCI1ENC.configFactoryDefault();
+    MCI2.configFactoryDefault();
+    MCI3.configFactoryDefault();
+
+    MCD4ENC.configFactoryDefault();
+    MCD5.configFactoryDefault();
+    MCD6.configFactoryDefault();
+
+
+  }
   public void resetOdometry(Pose2d pose) {
     resetEncoders();
     // m_odometry.resetPosition(pose, m_gyro.getRotation2d());

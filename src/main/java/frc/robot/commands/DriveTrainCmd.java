@@ -22,6 +22,7 @@ public class DriveTrainCmd extends CommandBase {
   @Override
   public void initialize() {
 
+    driveSubsystem.resetTalons();
 
   }
 

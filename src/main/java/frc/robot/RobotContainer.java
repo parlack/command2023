@@ -18,13 +18,11 @@ public Joystick XboxController_main= new Joystick(0);
 
   public RobotContainer() {
 
-
-    Controles1persona();
-
+    Controles1personatest();
 
   }
 
-  private void Controles1persona() {
+  private void Controles1personatest() {
     driveSubsystem.setDefaultCommand(new DriveTrainCmd(driveSubsystem, () -> XboxController_main.getRawAxis(3) -
     XboxController_main.getRawAxis(2), () -> XboxController_main.getRawAxis(0)));
     
@@ -32,8 +30,5 @@ public Joystick XboxController_main= new Joystick(0);
 
   public Command getAutonomousCommand() {
     return Commands.print("No autonomous command configured");
-
-
-    
   }
 }
