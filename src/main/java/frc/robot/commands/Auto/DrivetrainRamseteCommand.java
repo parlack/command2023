@@ -1,5 +1,5 @@
 
-package frc.robot.commands.Mecanismos_Y_Extras_Autonomo;
+package frc.robot.commands.Auto;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.RamseteController;
