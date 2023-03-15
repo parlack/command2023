@@ -1,30 +1,43 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
 
+import java.util.function.Supplier;
+
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.BrazoSubsystem;
 
 public class BrazoCmd extends CommandBase {
-  /** Creates a new BrazoCmd. */
-  public BrazoCmd() {
-    // Use addRequirements() here to declare subsystem dependencies.
+
+  private final BrazoSubsystem brazosubsystem;
+  private Supplier<Double> velocidadInferior,velocidadSuperior;
+
+  public BrazoCmd(BrazoSubsystem brazosubsystem, Supplier <Double> velocidadInferior, Supplier <Double> velocidadSuperior) {
+
+    this.velocidadInferior=velocidadInferior;
+    this.velocidadSuperior=velocidadSuperior;
+
+this.brazosubsystem=brazosubsystem;
+addRequirements(brazosubsystem);
+
   }
 
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+
+brazosubsystem.ejeinferior(velocidadInferior.get());
+brazosubsystem.ejesuperior(velocidadSuperior.get());
+
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {}
 
-  // Returns true when the command should end.
+
   @Override
   public boolean isFinished() {
     return false;

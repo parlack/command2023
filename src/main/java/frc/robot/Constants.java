@@ -17,6 +17,10 @@ public class Constants {
         public static int PuertMotIzq2 = 5;
         public static int PuertMotIzq3 = 4;
 
+        public static int PuertMotEjeSuperior=7;
+        public static int PuertMotEjeinferior=1;
+
+
 
 
     }
@@ -56,8 +60,43 @@ public class Constants {
         public final static GainsDT kGains_Velocit = new GainsDT(2.0033, 0.000, 0.005, 1023.0 / 20660.0, 300,
                 1.00);
 
+    }
 
+
+    public static final class KPIDejesuperior {
+
+        public static final int kSlotIdx = 0;
+        public static final int kPIDLoopIdx = 0;
+        public static final int kTimeoutMs = 30;
+        //public final static GainsCapucha kGains_Velocit = new GainsCapucha(0.25, 0.001, 20, 1023.0 / 7200.0, 300, 1.00);
+
+        public final static double KP=0.003;
+        public final static double kI=0;
+        public final static double kD=0.005;
+        public final static double kF=1023.0 / 20660.0;
+        public final static int kIzone=300;
+        public final static double kPeakOutput=1.00;
 
     }
+
+    
+    public static final class KPIDejeinferior {
+
+        public static final int kSlotIdx = 0;
+        public static final int kPIDLoopIdx = 0;
+        public static final int kTimeoutMs = 30;
+        //public final static GainsCapucha kGains_Velocit = new GainsCapucha(0.25, 0.001, 20, 1023.0 / 7200.0, 300, 1.00);
+
+        public final static double KP=0.003;
+        public final static double kI=0;
+        public final static double kD=0.005;
+        public final static double kF=1023.0 / 20660.0;
+        public final static int kIzone=300;
+        public final static double kPeakOutput=1.00;
+
+    }
+
+
+    
 
 }

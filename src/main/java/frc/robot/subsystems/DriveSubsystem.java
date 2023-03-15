@@ -30,8 +30,8 @@ public class DriveSubsystem extends SubsystemBase {
   WPI_TalonSRX MCD5 = new WPI_TalonSRX(PUERTOSCAN.PuertMotDer2);
   WPI_TalonSRX MCD6 = new WPI_TalonSRX(PUERTOSCAN.PuertMotDer3);
 
-MotorControllerGroup motsizq =new MotorControllerGroup(MCI1ENC,MCI2,MCI3);
-MotorControllerGroup motsder=new MotorControllerGroup(MCD4ENC,MCD5,MCD6);
+  MotorControllerGroup motsizq = new MotorControllerGroup(MCI1ENC, MCI2, MCI3);
+  MotorControllerGroup motsder = new MotorControllerGroup(MCD4ENC, MCD5, MCD6);
 
   DifferentialDrive chasis = new DifferentialDrive(motsizq, motsder);
 
@@ -70,8 +70,7 @@ MotorControllerGroup motsder=new MotorControllerGroup(MCD4ENC,MCD5,MCD6);
 
     motsizq.setInverted(false);
     motsder.setInverted(true);
-   // configPIDDrivTr();
-
+    // configPIDDrivTr();
 
   }
 
@@ -148,14 +147,13 @@ MotorControllerGroup motsder=new MotorControllerGroup(MCD4ENC,MCD5,MCD6);
     double calculo_encizq;
     double calculo_encder;
 
-    calculo_encizq=(-MCI1ENC.getSelectedSensorPosition()/4096/2);
-    calculo_encder=(MCD4ENC.getSelectedSensorPosition()/4096/2);
+    calculo_encizq = (-MCI1ENC.getSelectedSensorPosition() / 4096 / 2);
+    calculo_encder = (MCD4ENC.getSelectedSensorPosition() / 4096 / 2);
 
-    
     SmartDashboard.putNumber("encoderizquierdo", calculo_encizq);
     SmartDashboard.putNumber("encoderderecho", calculo_encder);
 
-    SmartDashboard.putNumber("avgDist", (calculo_encder + calculo_encizq)/2);
+    SmartDashboard.putNumber("avgDist", (calculo_encder + calculo_encizq) / 2);
   }
 
   public Pose2d getPose() {
@@ -174,9 +172,7 @@ MotorControllerGroup motsder=new MotorControllerGroup(MCD4ENC,MCD5,MCD6);
 
   }
 
-
-
-  public void resetTalons(){
+  public void resetTalons() {
 
     MCI1ENC.configFactoryDefault();
     MCI2.configFactoryDefault();
@@ -186,8 +182,8 @@ MotorControllerGroup motsder=new MotorControllerGroup(MCD4ENC,MCD5,MCD6);
     MCD5.configFactoryDefault();
     MCD6.configFactoryDefault();
 
-
   }
+
   public void resetOdometry(Pose2d pose) {
     resetEncoders();
     // m_odometry.resetPosition(pose, m_gyro.getRotation2d());
